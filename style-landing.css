@@ -1,0 +1,258 @@
+/* ============================================ */
+/* ملف: style-landing.css */
+/* أنماط صفحة الهبوط (Landing Page) */
+/* ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* خلفية زخارف فرعونية متحركة */
+body::before {
+    content: "⚜️";
+    position: absolute;
+    font-size: 200px;
+    opacity: 0.05;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+body::after {
+    content: "𓋹";
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.05;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+/* الحاوية الرئيسية */
+.landing-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* البطاقة الرئيسية */
+.landing-card {
+    background: rgba(26, 26, 46, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 60px;
+    padding: 50px 40px;
+    text-align: center;
+    border: 2px solid rgba(212, 160, 23, 0.5);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.landing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+    border-color: rgba(212, 160, 23, 0.8);
+}
+
+/* التاج/الرمز العلوي */
+.crown-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* العنوان الرئيسي */
+.landing-card h1 {
+    font-size: 2.5rem;
+    color: #d4a017;
+    margin-bottom: 15px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(212, 160, 23, 0.3);
+}
+
+/* العبارة الفرعية */
+.subtitle {
+    font-size: 1.1rem;
+    color: #e0cba0;
+    margin-bottom: 30px;
+    border-bottom: 1px dashed rgba(212, 160, 23, 0.4);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* وصف اللعبة */
+.description {
+    text-align: center;
+    margin: 30px 0;
+    line-height: 1.8;
+}
+
+.description p {
+    color: #ddd;
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+/* ميزات اللعبة */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 35px 0;
+}
+
+.feature {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 15px 25px;
+    text-align: center;
+    min-width: 120px;
+    transition: all 0.3s;
+    border: 1px solid rgba(212, 160, 23, 0.2);
+}
+
+.feature:hover {
+    background: rgba(212, 160, 23, 0.1);
+    transform: translateY(-3px);
+    border-color: rgba(212, 160, 23, 0.5);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.feature span {
+    color: #d4a017;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* زر البدء */
+.start-btn {
+    background: linear-gradient(135deg, #d4a017, #b8860b);
+    border: none;
+    padding: 16px 45px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1a1a2e;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    font-family: inherit;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.start-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #e6b422, #c4940a);
+    box-shadow: 0 12px 35px rgba(212, 160, 23, 0.4);
+}
+
+.start-btn:active {
+    transform: scale(0.98);
+}
+
+/* تذييل الصفحة */
+.landing-footer {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    color: #888;
+    text-align: center;
+}
+
+.landing-footer p {
+    margin: 5px 0;
+}
+
+/* الشخصيات المصغرة */
+.characters-preview {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0 20px;
+    flex-wrap: wrap;
+}
+
+.char-preview {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 0.8rem;
+    color: #d4a017;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(212, 160, 23, 0.3);
+}
+
+/* responsive */
+@media (max-width: 600px) {
+    .landing-card {
+        padding: 35px 25px;
+    }
+    
+    .landing-card h1 {
+        font-size: 1.8rem;
+    }
+    
+    .description p {
+        font-size: 0.95rem;
+    }
+    
+    .features {
+        gap: 15px;
+    }
+    
+    .feature {
+        padding: 10px 18px;
+        min-width: 90px;
+    }
+    
+    .start-btn {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+    }
+    
+    .char-preview {
+        font-size: 0.7rem;
+        padding: 5px 12px;
+    }
+}
