@@ -1,155 +1,138 @@
 // ============================================
-// result.js - عرض النتيجة المستلمة من الاختبار
+// result.js - Display result with separated cards (LARGER IMAGE)
 // ============================================
 
-// بيانات الشخصيات (الأسماء، الألوان، الوصف، وصورة الستيكر)
+// Character data with PNG image paths
 const characterData = {
-    cleopatra: {
-        name: "كليوباترا",
-        color: "#D4AF37",
-        desc: "ذكية، اجتماعية، وتعرفين كيف تؤثرين على الآخرين بجاذبيتك وحكمتك. أنتِ قائدة بالفطرة وتعشقين التميز.",
-        sticker: "👑"
-    },
-    nefertiti: {
-        name: "نفرتيتي",
-        color: "#48C9B0",
-        desc: "هادئة، راقية، ومتوازنة. تمتلكين حضوراً ساحراً بدون تكلف، والناس تنجذب لطاقتك الهادئة.",
-        sticker: "💎"
-    },
     athena: {
-        name: "أثينا",
-        color: "#808080",
-        desc: "عقلانية، استراتيجية، وتحللين كل شيء قبل اتخاذ القرار. الحكمة والفهم هما سلاحك الحقيقي.",
-        sticker: "🦉"
+        name: "Athena",
+        desc: "Rational, strategic, and analytical. You think before making any decision. Wisdom and understanding are your true weapons. You are the symbol of wisdom and justice.",
+        image: "athena.png"
     },
-    artemis: {
-        name: "أرتميس",
-        color: "#2E7D32",
-        desc: "مستقلة، قوية بهدوء، وتحبين الحرية. تمشين في طريقك الخاص دون الالتفات لآراء الآخرين.",
-        sticker: "🏹"
+    akhenaten: {
+        name: "Akhenaten",
+        desc: "A revolutionary thinker who isn't afraid to change old beliefs and follow your own path. You have a unique vision and a bold personality that brings change to the world.",
+        image: "akhenaten.png"
     },
-    ramses: {
-        name: "رمسيس الثاني",
-        color: "#C0392B",
-        desc: "قائد عظيم، طموح، وواثق من نفسه. تحبين الإنجازات الكبيرة وتسعين دائماً لترك بصمة خالدة.",
-        sticker: "🔱"
+    alexander: {
+        name: "Alexander the Great",
+        desc: "A great leader, ambitious, and refuses limitations. You love adventure and exploring the unknown, always striving to leave an eternal mark on history.",
+        image: "alexander.png"
     },
-    caesar: {
-        name: "يوليوس قيصر",
-        color: "#E67E22",
-        desc: "كاريزمي، مسيطر، واستراتيجي. تعرفين كيف تقودين الناس وتحققين أهدافك بإصرار وقوة.",
-        sticker: "⚔️"
-    },
-    socrates: {
-        name: "سقراط",
-        color: "#A0522D",
-        desc: "عميق، حكيم، ومحب للمعرفة. تفضلين التفكير والتحليل على الاندفاع، وتسعين دوماً للحقيقة.",
-        sticker: "📚"
+    shajar: {
+        name: "Shajar Al-Durr",
+        desc: "Strong, wise, and exceptional. An extraordinary woman who ruled and led at a time when leadership was exclusive to men. You possess an iron will.",
+        image: "shajar.png"
     },
     saladin: {
-        name: "صلاح الدين",
-        color: "#2E8B57",
-        desc: "نبيل، عادل، وقائد هادئ. تمتلكين توازناً رائعاً بين القوة والرحمة، والجميع يحترمونك.",
-        sticker: "🛡️"
+        name: "Saladin",
+        desc: "Noble, just, and a calm leader. You have a wonderful balance between strength and compassion, and everyone respects you. You are the symbol of dignity and chivalry.",
+        image: "saladin.png"
+    },
+    cleopatra: {
+        name: "Cleopatra",
+        desc: "Intelligent, social, and knows how to influence others with charm and wisdom. You are a natural leader who loves excellence and beauty.",
+        image: "cleopatra.png"
+    },
+    nefertiti: {
+        name: "Nefertiti",
+        desc: "Calm, elegant, and balanced. You have a captivating presence without effort, and people are drawn to your peaceful energy and timeless elegance.",
+        image: "nefertiti.png"
+    },
+    caesar: {
+        name: "Julius Caesar",
+        desc: "Charismatic, dominant, and strategic. You know how to lead people and achieve your goals with determination and power. You are a natural decision maker.",
+        image: "caesar.png"
     }
 };
 
-// عرض النتيجة
+// Display result
 function displayResult() {
     const savedResult = localStorage.getItem('quizResult');
     
     if (!savedResult) {
-        // لو مفيش نتيجة، نرجع للصفحة الرئيسية
         window.location.href = 'index.html';
         return;
     }
     
     const result = JSON.parse(savedResult);
-    const character = result.characterData;
-    const colorHex = result.characterData.color;
+    const characterKey = result.characterKey;
+    const character = characterData[characterKey];
     
-    // تحديث العناصر في الصفحة
+    if (!character) {
+        console.error('Character not found:', characterKey);
+        window.location.href = 'index.html';
+        return;
+    }
+    
+    // Update text elements
     document.getElementById('charName').innerHTML = character.name;
     document.getElementById('charDesc').innerHTML = character.desc;
     
-    // تحديث لون الدائرة
-    const colorDiv = document.getElementById('charColor');
-    if (colorDiv) {
-        colorDiv.style.backgroundColor = colorHex;
-        colorDiv.style.boxShadow = `0 0 30px ${colorHex}`;
-    }
-    
-    // عرض الستيكر (emoji أو صورة)
-    const stickerElement = document.getElementById('charSticker');
-    if (stickerElement && character.sticker) {
-        stickerElement.innerHTML = character.sticker;
-        stickerElement.style.fontSize = '5rem';
-        stickerElement.style.display = 'block';
+    // Update character image
+    const charImage = document.getElementById('charImage');
+    if (charImage) {
+        charImage.src = character.image;
+        charImage.alt = character.name;
+        
+        // Add error handling - if image doesn't load, show placeholder
+        charImage.onerror = function() {
+            this.src = '';
+            this.alt = 'Image not found';
+            this.style.backgroundColor = '#2a2a2a';
+            this.style.padding = '60px';
+            this.style.borderRadius = '40px';
+            this.style.minHeight = '250px';
+            this.style.display = 'flex';
+            this.style.alignItems = 'center';
+            this.style.justifyContent = 'center';
+        };
     }
 }
 
-// إعادة الاختبار
+// Restart quiz
 function restartQuiz() {
     localStorage.removeItem('quizResult');
     window.location.href = 'index.html';
 }
 
-// مشاركة النتيجة
+// Share result
 function shareResult() {
     const savedResult = localStorage.getItem('quizResult');
     if (savedResult) {
         const result = JSON.parse(savedResult);
-        const shareText = `🎭 أنا شخصيتي الفرعونية هي "${result.characterData.name}"! 🎭\n\n${result.characterData.desc}\n\nاكتشفي شخصيتك أيضاً على موقع تحليل الشخصية الفرعونية`;
+        const character = characterData[result.characterKey];
+        const shareText = `🎭 My Ancient Identity is "${character.name}"! 🎭\n\n${character.desc}\n\nDiscover your personality on the Ancient Identity website`;
         
-        // محاولة استخدام Web Share API (للجوال)
         if (navigator.share) {
             navigator.share({
-                title: 'نتيجة تحليل الشخصية الفرعونية',
+                title: 'Ancient Identity Result',
                 text: shareText,
             }).catch((err) => {
-                console.log('تم إلغاء المشاركة أو حدث خطأ:', err);
+                console.log('Share cancelled or error:', err);
                 copyToClipboard(shareText);
             });
         } else {
-            // نسخ للحافظة للأجهزة التي لا تدعم المشاركة
             copyToClipboard(shareText);
         }
     }
 }
 
-// نسخ إلى الحافظة
+// Copy to clipboard
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
-        showToast('✅ تم نسخ النتيجة! يمكنك مشاركتها الآن ✅');
+        showToast('✅ Result copied! You can share it now ✅');
     }).catch(() => {
-        showToast('⚠️ لم نتمكن من النسخ، يمكنك نسخ النص يدوياً ⚠️');
+        showToast('⚠️ Could not copy, you can copy the text manually ⚠️');
     });
 }
 
-// عرض رسالة منبثقة بسيطة (toast)
+// Show toast message
 function showToast(message) {
-    // إنشاء عنصر toast إذا لم يكن موجوداً
     let toast = document.getElementById('customToast');
     if (!toast) {
         toast = document.createElement('div');
         toast.id = 'customToast';
-        toast.style.cssText = `
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #d4a017, #b8860b);
-            color: #1a1a2e;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: bold;
-            z-index: 1000;
-            animation: fadeInUp 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            font-family: inherit;
-            text-align: center;
-            white-space: nowrap;
-        `;
         document.body.appendChild(toast);
     }
     
@@ -161,7 +144,7 @@ function showToast(message) {
     }, 3000);
 }
 
-// ربط الأحداث
+// Bind events
 function bindResultEvents() {
     const restartBtn = document.getElementById('restartBtn');
     const shareBtn = document.getElementById('shareBtn');
@@ -175,25 +158,15 @@ function bindResultEvents() {
     }
 }
 
-// إضافة تأثير حركي عند تحميل الصفحة
-function addAnimationEffects() {
-    const resultCard = document.querySelector('.result-card');
-    if (resultCard) {
-        resultCard.style.animation = 'fadeInUp 0.6s ease-out';
-    }
-}
-
-// التهيئة عند تحميل الصفحة
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     displayResult();
     bindResultEvents();
-    addAnimationEffects();
 });
 
-// منع الرجوع للصفحة السابقة بدون إعادة الاختبار (اختياري)
+// Prevent back navigation without result
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
-        // لو الصفحة جاية من cache، نتأكد أن النتيجة موجودة
         const savedResult = localStorage.getItem('quizResult');
         if (!savedResult) {
             window.location.href = 'index.html';

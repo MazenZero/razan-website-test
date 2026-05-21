@@ -1,3 +1,8 @@
+/* ============================================ */
+/* result.css - Ancient Identity Result Page */
+/* Separated cards: text | LARGER image | buttons */
+/* ============================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,29 +10,59 @@
 }
 
 body {
-    font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+    font-family: 'Cormorant Garamond', 'Segoe UI', 'Tahoma', serif;
     min-height: 100vh;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    position: relative;
 }
+
+/* Dark overlay */
+/* body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 0;
+    pointer-events: none;
+} */
 
 .result-page {
     width: 100%;
-    max-width: 550px;
+    max-width: 600px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.result-card {
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    border-radius: 60px;
-    padding: 40px 30px;
+/* ===== Top Card: Text Section ===== */
+.text-card {
+    background: rgba(20, 18, 15, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 50px;
+    padding: 25px 20px;
     text-align: center;
-    border: 2px solid #d4a017;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    animation: fadeInUp 0.6s ease-out;
+    border: 2px solid rgba(232, 213, 163, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.text-card:hover {
+    border-color: rgba(232, 213, 163, 0.8);
+    transform: translateY(-3px);
 }
 
 @keyframes fadeInUp {
@@ -42,67 +77,113 @@ body {
 }
 
 .crown-icon {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    animation: bounce 1s ease infinite;
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(232, 213, 163, 0.5));
 }
 
-@keyframes bounce {
+@keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-6px); }
 }
 
-.result-card h1 {
-    color: #d4a017;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.character-color {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 15px auto;
-    border: 3px solid #d4a017;
-    transition: all 0.3s;
+.text-card h1 {
+    color: #e8d5a3;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: 'Cinema Decorative', 'Cormorant Garamond', serif;
 }
 
 .character-name {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: bold;
     color: #fff;
-    margin: 15px 0;
-    text-shadow: 0 0 15px #d4a017;
-    animation: glow 2s ease-in-out infinite;
-}
-
-@keyframes glow {
-    0%, 100% { text-shadow: 0 0 10px #d4a017; }
-    50% { text-shadow: 0 0 25px #ffd700; }
+    margin: 10px 0;
+    text-shadow: 0 0 20px rgba(232, 213, 163, 0.5);
+    font-family: 'Cinema Decorative', 'Cormorant Garamond', serif;
+    letter-spacing: 2px;
 }
 
 .character-desc {
-    color: #ccc;
-    font-size: 1.1rem;
+    color: #d4c5a0;
+    font-size: 0.95rem;
     line-height: 1.6;
-    margin: 20px 0;
+    margin: 15px 0 5px;
     padding: 0 10px;
+    font-weight: 400;
+}
+
+/* ===== Middle Card: LARGER Image Section ===== */
+.image-card {
+    background: rgba(20, 18, 15, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 50px;
+    padding: 30px 20px;
+    text-align: center;
+    border: 2px solid rgba(232, 213, 163, 0.4);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+.image-card:hover {
+    border-color: rgba(232, 213, 163, 0.7);
+    transform: scale(1.01);
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.character-image {
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    object-fit: contain;
+    border-radius: 40px;
+    filter: drop-shadow(0 0 25px rgba(232, 213, 163, 0.4));
+    transition: all 0.3s ease;
+}
+
+.character-image:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 40px rgba(232, 213, 163, 0.6));
+}
+
+/* ===== Bottom Card: Buttons Section ===== */
+.buttons-card {
+    background: rgba(20, 18, 15, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 50px;
+    padding: 18px 20px;
+    text-align: center;
+    border: 2px solid rgba(232, 213, 163, 0.4);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.buttons-card:hover {
+    border-color: rgba(232, 213, 163, 0.7);
 }
 
 .buttons-container {
     display: flex;
     gap: 15px;
     justify-content: center;
-    margin-top: 25px;
     flex-wrap: wrap;
 }
 
 .restart-btn, .share-btn {
-    padding: 12px 25px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 40px;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s;
     border: none;
@@ -115,53 +196,118 @@ body {
 }
 
 .restart-btn:hover {
-    transform: scale(1.05);
+    transform: translateY(-3px);
     background: linear-gradient(135deg, #e6b422, #c4940a);
+    box-shadow: 0 8px 20px rgba(212, 160, 23, 0.3);
 }
 
 .share-btn {
-    background: transparent;
-    color: #d4a017;
-    border: 2px solid #d4a017;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    color: #e8d5a3;
+    border: 2px solid #e8d5a3;
 }
 
 .share-btn:hover {
-    background: #d4a017;
+    background: #e8d5a3;
+    color: #0a0a0a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(232, 213, 163, 0.2);
+}
+
+/* Toast Notification */
+#customToast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #d4a017, #b8860b);
     color: #1a1a2e;
-    transform: scale(1.05);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: bold;
+    z-index: 1000;
+    animation: fadeInUp 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    font-family: inherit;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 0.9rem;
 }
 
-/* ستيكر الشخصية */
-.character-sticker {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 15px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: drop-shadow(0 0 15px rgba(212, 160, 23, 0.5));
-}
-
-/* تنسيق للجوال */
+/* Responsive */
 @media (max-width: 550px) {
-    .result-card {
-        padding: 30px 20px;
+    .result-page {
+        gap: 15px;
+        max-width: 95%;
+    }
+    
+    .text-card {
+        padding: 20px 15px;
     }
     
     .character-name {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
-    .result-card h1 {
-        font-size: 1.4rem;
+    .text-card h1 {
+        font-size: 1.2rem;
     }
     
     .character-desc {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
     
-    .character-sticker {
-        width: 120px;
-        height: 120px;
+    .character-image {
+        max-width: 220px;
+        min-height: 180px;
+    }
+    
+    .image-card {
+        padding: 20px 15px;
+    }
+    
+    .buttons-card {
+        padding: 15px;
+    }
+    
+    .restart-btn, .share-btn {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+    
+    .crown-icon {
+        font-size: 2rem;
+    }
+    
+    #customToast {
+        white-space: normal;
+        max-width: 90%;
+        font-size: 0.8rem;
+        padding: 10px 18px;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1920px) {
+    .result-page {
+        max-width: 750px;
+    }
+    
+    .character-name {
+        font-size: 3rem;
+    }
+    
+    .character-image {
+        max-width: 450px;
+        min-height: 350px;
+    }
+    
+    .text-card h1 {
+        font-size: 1.8rem;
+    }
+    
+    .character-desc {
+        font-size: 1.1rem;
     }
 }

@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>نتيجة تحليل الشخصية الفرعونية</title>
+    <title>Personality Result | Ancient Identity</title>
     <link rel="stylesheet" href="result.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinema+Decorative:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="result-page">
-        <div class="result-card">
+        
+        <!-- Top Section: Text content -->
+        <div class="text-card">
             <div class="crown-icon">⚜️</div>
-            <h1>شخصيتك الفرعونية هي</h1>
-            <div id="charSticker" class="character-sticker"></div>
-            <div class="character-color" id="charColor"></div>
+            <h1>Your Ancient Identity Is</h1>
             <div class="character-name" id="charName"></div>
             <div class="character-desc" id="charDesc"></div>
-            <div class="buttons-container">
-                <button class="restart-btn" id="restartBtn">🔄 إعادة الاختبار</button>
-                <button class="share-btn" id="shareBtn">📤 مشاركة النتيجة</button>
+        </div>
+
+        <!-- Middle Section: Character Image Card (LARGER) -->
+        <div class="image-card">
+            <div class="image-wrapper">
+                <img src="" alt="Character" class="character-image" id="charImage">
             </div>
         </div>
+
+        <!-- Bottom Section: Buttons -->
+        <div class="buttons-card">
+            <div class="buttons-container">
+                <button class="restart-btn" id="restartBtn">🔄 Retake Test</button>
+                <button class="share-btn" id="shareBtn">📤 Share Result</button>
+            </div>
+        </div>
+
     </div>
 
     <script src="result.js"></script>
