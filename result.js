@@ -1,5 +1,5 @@
 // ============================================
-// result.js - Display result with separated cards (LARGER IMAGE)
+// result.js - Display result with single beautiful card
 // ============================================
 
 // Character data with PNG image paths
@@ -80,12 +80,9 @@ function displayResult() {
             this.src = '';
             this.alt = 'Image not found';
             this.style.backgroundColor = '#2a2a2a';
-            this.style.padding = '60px';
-            this.style.borderRadius = '40px';
-            this.style.minHeight = '250px';
-            this.style.display = 'flex';
-            this.style.alignItems = 'center';
-            this.style.justifyContent = 'center';
+            this.style.padding = '50px';
+            this.style.borderRadius = '30px';
+            this.style.minHeight = '200px';
         };
     }
 }
