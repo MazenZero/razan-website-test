@@ -45,17 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
         egyptian: {
             title: "EGYPTIAN CIVILIZATION",
             desc: "Step into the world of Pharaohs, pyramids, and eternal wisdom. The ancient Egyptians believed in balance, Ma'at, and the journey of the soul. Their legacy teaches us about power, mystery, and the art of leaving a mark that lasts forever.",
-            icon: "𓋹"
+            icon: "𓋹𓂀𓋹𓃠"
         },
         greco: {
             title: "GRECO-ROMAN CIVILIZATION",
             desc: "From the philosophy of Socrates to the might of Rome, Greco-Roman culture shaped Western thought. Heroes, gods, and the pursuit of excellence defined these civilizations. Discover your inner warrior, thinker, or ruler.",
-            icon: "⚡"
+            icon: "⚔️🏛️"
         },
         islamic: {
             title: "ISLAMIC GOLDEN AGE",
             desc: "An era of knowledge, art, and scientific breakthrough. From Baghdad to Cordoba, scholars advanced mathematics, medicine, and philosophy. This civilization celebrates wisdom, justice, and the beauty of discovery.",
-            icon: "✧"
+            icon: "☪🕌☪"
         }
     };
     

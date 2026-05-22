@@ -69,19 +69,21 @@ body {
 }
 
 /* تنسيق كل خيار على حدة */
+/* تنسيق كل خيار على حدة */
 .radio-option {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     background: rgba(255, 255, 255, 0.9);
-    padding: 10px 18px;
+    padding: 12px 20px;
     border-radius: 60px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.5);
     font-weight: 500;
 }
+
 
 .radio-option:hover {
     background: #ffffff;
@@ -94,14 +96,19 @@ body {
 .radio-option input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
     border: 2px solid #d4a017;
     border-radius: 50%;
     margin: 0;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     background-color: white;
+    flex-shrink: 0;
 }
 
 /* تخصيص الدائرة الداخلية عند الاختيار */
@@ -109,6 +116,21 @@ body {
     border-color: #d4a017;
     background-color: #d4a017;
     box-shadow: inset 0 0 0 3px white;
+}
+/* Entire Option Turns Golden When Selected */
+.radio-option:has(input[type="radio"]:checked) {
+    background: linear-gradient(135deg, #d4a017, #b8860b);
+    border-color: #d4a017;
+}
+
+.radio-option:has(input[type="radio"]:checked) .radio-text {
+    color: white;
+}
+
+.radio-option:has(input[type="radio"]:checked) input[type="radio"] {
+    border-color: white;
+    background-color: white;
+    box-shadow: inset 0 0 0 3px #d4a017;
 }
 
 .radio-text {
@@ -120,7 +142,7 @@ body {
 /* زر النتيجة */
 .result-button-container {
     text-align: center;
-    margin: 30px 0 20px;
+    margin: 30px 0 20px ;
 }
 
 .show-result-btn {
@@ -216,7 +238,8 @@ header p {
     }
     
     .radio-option {
-        justify-content: center;
+        justify-content: flex-start;
+        padding: 12px 16px;
     }
     
     .card h1 {
@@ -225,6 +248,35 @@ header p {
     
     header h1 {
         font-size: 1.3rem;
+    }
+    
+    .back-btn {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+    
+    .show-result-btn {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+    
+    /* سؤال الجنس في الجوال */
+    .card[data-q="gender"] .radio-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .card[data-q="gender"] .radio-option {
+        min-width: auto;
+        justify-content: center;
+    }
+    
+    /* جميع أزرار الراديو تحافظ على حجم ثابت في الجوال */
+    .radio-option input[type="radio"] {
+        width: 20px !important;
+        height: 20px !important;
+        min-width: 20px !important;
+        min-height: 20px !important;
     }
 }
 

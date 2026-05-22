@@ -99,7 +99,7 @@ function shareResult() {
     if (savedResult) {
         const result = JSON.parse(savedResult);
         const character = characterData[result.characterKey];
-        const shareText = `🎭 My Ancient Identity is "${character.name}"! 🎭\n\n${character.desc}\n\nDiscover your personality on the Ancient Identity website`;
+        const shareText = `🎭 My Ancient Identity is "${character.name}"! 🎭\n\n${character.desc}\n\nDiscover your personality on the Ancient Identity website \n https://mazenzero.github.io/razan-website-test/ `;
         
         if (navigator.share) {
             navigator.share({

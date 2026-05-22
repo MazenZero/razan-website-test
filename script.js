@@ -1,73 +1,59 @@
 // ============================================
 // script.js - Quiz logic and scoring system
-// Updated with new characters: Athena, Akhenaten, Alexander the Great, Shajar Al-Durr, Saladin, Cleopatra, Nefertiti, Julius Caesar
+// Updated with gender filtering
 // ============================================
 
-// Character data for the result page
+// Character data separated by gender
 const characterData = {
+    // Female characters
     athena: {
         name: "Athena",
-        nameAr: "Athena",
-        color: "#808080",
+        gender: "female",
         desc: "Rational, strategic, and analytical. You think before making any decision. Wisdom and understanding are your true weapons. You are the symbol of wisdom and justice.",
-        sticker: "athena.png",
-        emoji: "🦉"
-    },
-    akhenaten: {
-        name: "Akhenaten",
-        nameAr: "Akhenaten",
-        color: "#E8A317",
-        desc: "A revolutionary thinker who isn't afraid to change old beliefs and follow your own path. You have a unique vision and a bold personality that brings change to the world.",
-        sticker: "akhenaten.png",
-        emoji: "☀️"
-    },
-    alexander: {
-        name: "Alexander the Great",
-        nameAr: "Alexander the Great",
-        color: "#C0392B",
-        desc: "A great leader, ambitious, and refuses limitations. You love adventure and exploring the unknown, always striving to leave an eternal mark on history.",
-        sticker: "alexander.png",
-        emoji: "⚔️"
+        image: "athena.png"
     },
     shajar: {
         name: "Shajar Al-Durr",
-        nameAr: "Shajar Al-Durr",
-        color: "#9B59B6",
+        gender: "female",
         desc: "Strong, wise, and exceptional. An extraordinary woman who ruled and led at a time when leadership was exclusive to men. You possess an iron will.",
-        sticker: "shajar.png",
-        emoji: "👑"
-    },
-    saladin: {
-        name: "Saladin",
-        nameAr: "Saladin",
-        color: "#2E8B57",
-        desc: "Noble, just, and a calm leader. You have a wonderful balance between strength and compassion, and everyone respects you. You are the symbol of dignity and chivalry.",
-        sticker: "saladin.png",
-        emoji: "🛡️"
+        image: "shajar.png"
     },
     cleopatra: {
         name: "Cleopatra",
-        nameAr: "Cleopatra",
-        color: "#D4AF37",
+        gender: "female",
         desc: "Intelligent, social, and knows how to influence others with charm and wisdom. You are a natural leader who loves excellence and beauty.",
-        sticker: "cleopatra.png",
-        emoji: "👑"
+        image: "cleopatra.png"
     },
     nefertiti: {
         name: "Nefertiti",
-        nameAr: "Nefertiti",
-        color: "#48C9B0",
+        gender: "female",
         desc: "Calm, elegant, and balanced. You have a captivating presence without effort, and people are drawn to your peaceful energy and timeless elegance.",
-        sticker: "nefertiti.png",
-        emoji: "💎"
+        image: "nefertiti.png"
+    },
+    // Male characters
+    akhenaten: {
+        name: "Akhenaten",
+        gender: "male",
+        desc: "A revolutionary thinker who isn't afraid to change old beliefs and follow your own path. You have a unique vision and a bold personality that brings change to the world.",
+        image: "akhenaten.png"
+    },
+    alexander: {
+        name: "Alexander the Great",
+        gender: "male",
+        desc: "A great leader, ambitious, and refuses limitations. You love adventure and exploring the unknown, always striving to leave an eternal mark on history.",
+        image: "alexander.png"
+    },
+    saladin: {
+        name: "Saladin",
+        gender: "male",
+        desc: "Noble, just, and a calm leader. You have a wonderful balance between strength and compassion, and everyone respects you. You are the symbol of dignity and chivalry.",
+        image: "saladin.png"
     },
     caesar: {
         name: "Julius Caesar",
-        nameAr: "Julius Caesar",
-        color: "#E67E22",
+        gender: "male",
         desc: "Charismatic, dominant, and strategic. You know how to lead people and achieve your goals with determination and power. You are a natural decision maker.",
-        sticker: "caesar.png",
-        emoji: "🏛️"
+        image: "caesar.png"
     }
 };
 
@@ -83,6 +69,9 @@ const scores = {
     caesar: 0
 };
 
+// Store selected gender
+let selectedGender = null;
+
 // Helper function to add points to characters
 function addScore(chars, points = 1) {
     chars.forEach(c => {
@@ -92,44 +81,44 @@ function addScore(chars, points = 1) {
 
 // Question 1: How do people usually describe you?
 function q1(answer) {
-    if (answer === "A") addScore(["athena", "akhenaten"]);      // Different in your thinking
-    if (answer === "B") addScore(["alexander", "caesar"]);       // Strong and confident person
-    if (answer === "C") addScore(["nefertiti", "saladin"]);      // Calm and easy-going
+    if (answer === "A") addScore(["athena", "akhenaten"]);
+    if (answer === "B") addScore(["alexander", "caesar"]);
+    if (answer === "C") addScore(["nefertiti", "saladin"]);
 }
 
 // Question 2: When facing a problem, what do you usually do?
 function q2(answer) {
-    if (answer === "A") addScore(["athena", "saladin"]);         // Think and analyze calmly
-    if (answer === "B") addScore(["alexander", "cleopatra"]);     // Confront quickly and directly
-    if (answer === "C") addScore(["akhenaten", "nefertiti"]);     // Step back until I understand the picture
+    if (answer === "A") addScore(["athena", "saladin"]);
+    if (answer === "B") addScore(["alexander", "cleopatra"]);
+    if (answer === "C") addScore(["akhenaten", "nefertiti"]);
 }
 
 // Question 3: What drives your decisions in life the most?
 function q3(answer) {
-    if (answer === "A") addScore(["athena", "akhenaten"]);       // Curiosity and love of understanding
-    if (answer === "B") addScore(["alexander", "caesar"]);        // Achieving success and proving myself
-    if (answer === "C") addScore(["nefertiti", "shajar"]);        // Living freely and comfortably without pressure
+    if (answer === "A") addScore(["athena", "akhenaten"]);
+    if (answer === "B") addScore(["alexander", "caesar"]);
+    if (answer === "C") addScore(["nefertiti", "shajar"]);
 }
 
 // Question 4: If someone bothers or wrongs you:
 function q4(answer) {
-    if (answer === "A") addScore(["athena", "cleopatra"]);        // Respond with reason and logic
-    if (answer === "B") addScore(["alexander", "caesar"]);        // Respond quickly and decisively
-    if (answer === "C") addScore(["saladin", "nefertiti"]);       // Choose calmness and withdrawal
+    if (answer === "A") addScore(["athena", "cleopatra"]);
+    if (answer === "B") addScore(["alexander", "caesar"]);
+    if (answer === "C") addScore(["saladin", "nefertiti"]);
 }
 
 // Question 5: People usually see you as:
 function q5(answer) {
-    if (answer === "A") addScore(["athena", "saladin"]);          // A wise and understanding person
-    if (answer === "B") addScore(["alexander", "cleopatra"]);      // A leader who influences others
-    if (answer === "C") addScore(["akhenaten", "shajar"]);         // A bit mysterious and hard to understand
+    if (answer === "A") addScore(["athena", "saladin"]);
+    if (answer === "B") addScore(["alexander", "cleopatra"]);
+    if (answer === "C") addScore(["akhenaten", "shajar"]);
 }
 
 // Question 6: Your approach to life is closest to:
 function q6(answer) {
-    if (answer === "A") addScore(["athena", "nefertiti"]);        // Think before I act
-    if (answer === "B") addScore(["alexander", "caesar"]);         // Achieve my goals quickly and persistently
-    if (answer === "C") addScore(["akhenaten", "shajar"]);         // Live my way without restrictions
+    if (answer === "A") addScore(["athena", "nefertiti"]);
+    if (answer === "B") addScore(["alexander", "caesar"]);
+    if (answer === "C") addScore(["akhenaten", "shajar"]);
 }
 
 // Reset all scores
@@ -139,12 +128,17 @@ function resetScores() {
     }
 }
 
-// Calculate result (highest score with tie-breaker)
+// Calculate result (highest score with tie-breaker) - filtered by gender
 function getResult() {
     let max = -1;
     let winners = [];
 
     for (let key in scores) {
+        // Filter by selected gender
+        if (characterData[key] && characterData[key].gender !== selectedGender) {
+            continue; // Skip characters that don't match the selected gender
+        }
+        
         if (scores[key] > max) {
             max = scores[key];
             winners = [key];
@@ -157,8 +151,20 @@ function getResult() {
     return winners[Math.floor(Math.random() * winners.length)];
 }
 
-// Check if all questions are answered
+// Check if gender is selected
+function isGenderSelected() {
+    const selected = document.querySelector(`input[name="gender"]:checked`);
+    if (selected) {
+        selectedGender = selected.value;
+        return true;
+    }
+    return false;
+}
+
+// Check if all questions are answered (including gender)
 function allQuestionsAnswered() {
+    if (!isGenderSelected()) return false;
+    
     for (let i = 1; i <= 6; i++) {
         const selected = document.querySelector(`input[name="q${i}"]:checked`);
         if (!selected) return false;
@@ -170,16 +176,22 @@ function allQuestionsAnswered() {
 function updateButtonState() {
     const btn = document.getElementById('showResultBtn');
     const statusDiv = document.getElementById('scoreStatus');
+    
+    const genderSelected = isGenderSelected();
+    let answeredCount = 0;
+    
+    if (genderSelected) answeredCount++;
+    
+    for (let i = 1; i <= 6; i++) {
+        if (document.querySelector(`input[name="q${i}"]:checked`)) answeredCount++;
+    }
+    
     if (allQuestionsAnswered()) {
         btn.disabled = false;
         if (statusDiv) statusDiv.innerHTML = "✅ All questions answered! Click to discover your personality ✅";
     } else {
         btn.disabled = true;
-        let answeredCount = 0;
-        for (let i = 1; i <= 6; i++) {
-            if (document.querySelector(`input[name="q${i}"]:checked`)) answeredCount++;
-        }
-        if (statusDiv) statusDiv.innerHTML = `📝 ${answeredCount}/6 questions answered... Complete all answers to see your result 📝`;
+        if (statusDiv) statusDiv.innerHTML = `📝 ${answeredCount}/7 questions answered... Complete all answers to see your result 📝`;
     }
 }
 
@@ -209,7 +221,7 @@ function collectAnswersAndCompute() {
 // Show result page
 function showResultPage() {
     if (!allQuestionsAnswered()) {
-        alert("⚠️ Please answer all 6 questions first ⚠️");
+        alert("⚠️ Please answer all questions (including gender selection) first ⚠️");
         return;
     }
 
@@ -239,7 +251,7 @@ function bindRadioEvents() {
     });
 }
 
-// Add card click effects
+// Add card click effects and golden border effect
 function addCardEffects() {
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
@@ -278,10 +290,3 @@ function init() {
 
 // Start when DOM is ready
 document.addEventListener('DOMContentLoaded', init);
-// Back button to landing page
-const backButton = document.getElementById('backToLandingBtn');
-if (backButton) {
-    backButton.addEventListener('click', function() {
-        window.location.href = 'index.html';
-    });
-}
